@@ -1,5 +1,4 @@
-const SHOPIFY_SHOP = Deno.env.get("SHOPIFY_SHOP");
-const SHOPIFY_ACCESS_TOKEN = Deno.env.get("SHOPIFY_ACCESS_TOKEN");
+import { SHOPIFY_ACCESS_TOKEN, SHOPIFY_SHOP } from "@/utils/config.js";
 
 if (SHOPIFY_SHOP === undefined || SHOPIFY_ACCESS_TOKEN === undefined) {
   throw new Error(

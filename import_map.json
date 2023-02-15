@@ -10,7 +10,8 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
-    "$std/": "https://deno.land/std@0.154.0/",
-    "swr": "https://esm.sh/v98/swr@2.0.0-beta.6?alias=react:preact/compat&external=preact/compat"
+    "$std/": "https://deno.land/std@0.177.0/",
+    "swr": "https://esm.sh/v98/swr@2.0.0-beta.6?alias=react:preact/compat&external=preact/compat",
+    "envalid": "https://deno.land/x/envalid@0.1.2/mod.ts"
   }
 }
