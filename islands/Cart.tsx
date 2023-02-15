@@ -56,10 +56,15 @@ export default function Cart() {
     return <div>Error: {error.message}</div>;
   }
 
+  const doOpenCart = () => {
+    console.log("CARTOPENERS");
+    return ref.current!.showModal();
+  };
+
   return (
     <div>
       <button
-        onClick={() => ref.current!.showModal()}
+        onClick={doOpenCart}
         class="flex items-center gap-2 items-center border-2 border-white rounded-full px-5 py-1 font-semibold text-white hover:bg-gray-500 hover:text-white transition-colors duration-300"
       >
         <IconCart />
@@ -67,6 +72,7 @@ export default function Cart() {
       </button>
       <dialog
         ref={ref}
+        id="cart"
         class={tw`bg-transparent p-0 m-0 pt-[50%] sm:pt-0 sm:ml-auto max-w-full sm:max-w-lg w-full max-h-full h-full ${slideBottom} sm:${slideRight} ${backdrop}`}
         onClick={onDialogClick}
       >

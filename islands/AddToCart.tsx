@@ -12,7 +12,9 @@ export default function AddToCart(props: AddToCartProps) {
   const add = (e: MouseEvent) => {
     e.preventDefault();
     setIsAdding(true);
+    const cart = document.getElementById("cart");
     addToCart(data!.id, props.id).finally(() => {
+      cart.showModal();
       setIsAdding(false);
     });
   };
