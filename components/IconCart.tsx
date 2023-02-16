@@ -33,5 +33,5 @@ export default function IconCart({ size = 16 }: { size?: number }) {
         fill="currentColor"
       />
     </svg>
-  );
+  )
 }

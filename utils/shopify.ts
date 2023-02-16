@@ -1,9 +1,9 @@
-import { SHOPIFY_ACCESS_TOKEN, SHOPIFY_SHOP } from "@/utils/config.js";
+import { SHOPIFY_ACCESS_TOKEN, SHOPIFY_SHOP } from "@/utils/config.js"
 
 if (SHOPIFY_SHOP === undefined || SHOPIFY_ACCESS_TOKEN === undefined) {
   throw new Error(
     "env `SHOPIFY_SHOP` and `SHOPIFY_ACCESS_TOKEN` must be set",
-  );
+  )
 }
 
 export async function graphql<T>(
@@ -17,14 +17,14 @@ export async function graphql<T>(
       "X-Shopify-Storefront-Access-Token": SHOPIFY_ACCESS_TOKEN!,
     },
     body: JSON.stringify({ query, variables }),
-  });
+  })
   if (!resp.ok) {
-    const body = await resp.text();
-    throw new Error(`${resp.status} ${body}`);
+    const body = await resp.text()
+    throw new Error(`${resp.status} ${body}`)
   }
-  const json = await resp.json();
+  const json = await resp.json()
   if (json.errors) {
-    throw new Error(json.errors.map((e: Error) => e.message).join("\n"));
+    throw new Error(json.errors.map((e: Error) => e.message).join("\n"))
   }
-  return json.data as T;
+  return json.data as T
 }

@@ -1,4 +1,4 @@
-import GitHub from "./IconGithub.tsx";
+import GitHub from "./IconGithub.tsx"
 
 export function Footer() {
   return (
@@ -59,5 +59,5 @@ export function Footer() {
         </span>
       </a>
     </footer>
-  );
+  )
 }

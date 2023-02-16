@@ -1,23 +1,23 @@
-import { useState } from "preact/hooks";
-import { addToCart, useCart } from "@/utils/data.ts";
+import { useState } from "preact/hooks"
+import { addToCart, useCart } from "@/utils/data.ts"
 
 interface AddToCartProps {
-  id: string;
+  id: string
 }
 
 export default function AddToCart(props: AddToCartProps) {
-  const { data } = useCart();
-  const [isAdding, setIsAdding] = useState(false);
+  const { data } = useCart()
+  const [isAdding, setIsAdding] = useState(false)
 
   const add = (e: MouseEvent) => {
-    e.preventDefault();
-    setIsAdding(true);
-    const cart = document.getElementById("cart");
+    e.preventDefault()
+    setIsAdding(true)
+    const cart = document.getElementById("cart")
     addToCart(data!.id, props.id).finally(() => {
-      cart.showModal();
-      setIsAdding(false);
-    });
-  };
+      setTimeout(() => cart.showModal(), 500)
+      setIsAdding(false)
+    })
+  }
 
   return (
     <button
@@ -29,5 +29,5 @@ export default function AddToCart(props: AddToCartProps) {
     >
       {isAdding ? "Adding..." : "Add to Cart"}
     </button>
-  );
+  )
 }

@@ -1,65 +1,65 @@
-import { useRef } from "preact/hooks";
-import { IS_BROWSER } from "$fresh/runtime.ts";
-import { apply, tw } from "twind";
-import { animation, css } from "twind/css";
-import IconCart from "@/components/IconCart.tsx";
+import { useRef } from "preact/hooks"
+import { IS_BROWSER } from "$fresh/runtime.ts"
+import { apply, tw } from "twind"
+import { animation, css } from "twind/css"
+import IconCart from "@/components/IconCart.tsx"
 import {
   CartData,
   formatCurrency,
   removeFromCart,
   useCart,
-} from "@/utils/data.ts";
+} from "@/utils/data.ts"
 
 // Lazy load a <dialog> polyfill.
 // @ts-expect-error HTMLDialogElement is not just a type!
 if (IS_BROWSER && window.HTMLDialogElement === "undefined") {
   await import(
     "https://raw.githubusercontent.com/GoogleChrome/dialog-polyfill/5033aac1b74c44f36cde47be3d11f4756f3f8fda/dist/dialog-polyfill.esm.js"
-  );
+  )
 }
 
 declare global {
   interface HTMLDialogElement {
-    showModal(): void;
-    close(): void;
+    showModal(): void
+    close(): void
   }
 }
 
 const slideRight = animation("0.4s ease normal", {
   from: { transform: "translateX(100%)" },
   to: { transform: "translateX(0)" },
-});
+})
 
 const slideBottom = animation("0.4s ease normal", {
   from: { transform: "translateY(100%)" },
   to: { transform: "translateY(0)" },
-});
+})
 
 const backdrop = css({
   "&::backdrop": {
     background: "rgba(0, 0, 0, 0.5)",
   },
-});
+})
 
 export default function Cart() {
-  const { data, error } = useCart();
+  const { data, error } = useCart()
 
-  const ref = useRef<HTMLDialogElement | null>(null);
+  const ref = useRef<HTMLDialogElement | null>(null)
 
   const onDialogClick = (e: MouseEvent) => {
     if ((e.target as HTMLDialogElement).tagName === "DIALOG") {
-      ref.current!.close();
+      ref.current!.close()
     }
-  };
+  }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error.message}</div>
   }
 
   const doOpenCart = () => {
-    console.log("CARTOPENERS");
-    return ref.current!.showModal();
-  };
+    console.log("CARTOPENERS")
+    return ref.current!.showModal()
+  }
 
   return (
     <div>
@@ -79,27 +79,27 @@ export default function Cart() {
         <CartInner cart={data} />
       </dialog>
     </div>
-  );
+  )
 }
 
 function CartInner(props: { cart: CartData | undefined }) {
-  const corners = "rounded(tl-2xl tr-2xl sm:(tr-none bl-2xl))";
+  const corners = "rounded(tl-2xl tr-2xl sm:(tr-none bl-2xl))"
   const card =
-    `py-8 px-6 h-full bg-white ${corners} flex flex-col justify-between`;
-  const { data: cart } = useCart();
+    `py-8 px-6 h-full bg-white ${corners} flex flex-col justify-between`
+  const { data: cart } = useCart()
 
   const checkout = (e: Event) => {
-    e.preventDefault();
+    e.preventDefault()
     if (cart) {
-      location.href = cart.checkoutUrl;
+      location.href = cart.checkoutUrl
     }
-  };
+  }
 
   const remove = (itemId: string) => {
     if (cart) {
-      removeFromCart(cart.id, itemId);
+      removeFromCart(cart.id, itemId)
     }
-  };
+  }
 
   return (
     <div class={card}>
@@ -108,7 +108,7 @@ function CartInner(props: { cart: CartData | undefined }) {
         <button
           class="py-1"
           onClick={(e) => {
-            (e.target as HTMLButtonElement).closest("dialog")!.close();
+            ;(e.target as HTMLButtonElement).closest("dialog")!.close()
           }}
         >
           <svg
@@ -199,7 +199,7 @@ function CartInner(props: { cart: CartData | undefined }) {
                 type="button"
                 class="font-medium"
                 onClick={(e) => {
-                  (e.target as HTMLButtonElement).closest("dialog")!.close();
+                  ;(e.target as HTMLButtonElement).closest("dialog")!.close()
                 }}
               >
                 Continue Shopping <span aria-hidden="true">&rarr;</span>
@@ -209,5 +209,5 @@ function CartInner(props: { cart: CartData | undefined }) {
         </div>
       )}
     </div>
-  );
+  )
 }

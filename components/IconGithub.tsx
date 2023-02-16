@@ -20,5 +20,5 @@ export default function GitHub(props: { class?: string }) {
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 }

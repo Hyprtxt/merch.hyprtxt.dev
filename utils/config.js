@@ -1,6 +1,6 @@
 // Load dotenv over Deno.env
-import { load } from "$std/dotenv/mod.ts";
-import { cleanEnv, host, port, str, url } from "envalid";
+import { load } from "$std/dotenv/mod.ts"
+import { cleanEnv, host, port, str, url } from "envalid"
 
 const ENV = cleanEnv(await load(), {
   BASE_URL: url(),
@@ -8,7 +8,7 @@ const ENV = cleanEnv(await load(), {
   PORT: port(),
   SHOPIFY_SHOP: host(),
   SHOPIFY_ACCESS_TOKEN: str(),
-});
+})
 
 export const {
   BASE_URL,
@@ -16,6 +16,6 @@ export const {
   PORT,
   SHOPIFY_SHOP,
   SHOPIFY_ACCESS_TOKEN,
-} = ENV;
+} = ENV
 
-export default ENV;
+export default ENV

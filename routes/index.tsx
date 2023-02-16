@@ -1,13 +1,13 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
-import { tw } from "twind";
-import { aspectRatio } from "@twind/aspect-ratio";
-import { formatCurrency } from "@/utils/data.ts";
-import { graphql } from "@/utils/shopify.ts";
-import { Footer } from "@/components/Footer.tsx";
-import { HeadElement } from "@/components/HeadElement.tsx";
-import { Header } from "@/components/Header.tsx";
-import IconCart from "@/components/IconCart.tsx";
-import { List, Product } from "@/utils/types.ts";
+import { Handlers, PageProps } from "$fresh/server.ts"
+import { tw } from "twind"
+import { aspectRatio } from "@twind/aspect-ratio"
+import { formatCurrency } from "@/utils/data.ts"
+import { graphql } from "@/utils/shopify.ts"
+import { Footer } from "@/components/Footer.tsx"
+import { HeadElement } from "@/components/HeadElement.tsx"
+import { Header } from "@/components/Header.tsx"
+import IconCart from "@/components/IconCart.tsx"
+import { List, Product } from "@/utils/types.ts"
 
 const q = `{
   products(first: 10) {
@@ -31,22 +31,22 @@ const q = `{
       }
     }
   }
-}`;
+}`
 
 interface Data {
-  products: List<Product>;
+  products: List<Product>
 }
 
 export const handler: Handlers<Data> = {
   async GET(_req, ctx) {
-    const data = await graphql<Data>(q);
-    return ctx.render(data);
+    const data = await graphql<Data>(q)
+    return ctx.render(data)
   },
-};
+}
 
 export default function Home(ctx: PageProps<Data>) {
-  const { data, url } = ctx;
-  const products = data.products.nodes;
+  const { data, url } = ctx
+  const products = data.products.nodes
   return (
     <div>
       <HeadElement
@@ -69,11 +69,11 @@ export default function Home(ctx: PageProps<Data>) {
       </div>
       <Footer />
     </div>
-  );
+  )
 }
 
 function ProductCard(props: { product: Product }) {
-  const { product } = props;
+  const { product } = props
   return (
     <a key={product.id} href={`/products/${product.handle}`} class="group">
       <div
@@ -104,5 +104,5 @@ function ProductCard(props: { product: Product }) {
         </strong>
       </div>
     </a>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import { Head } from "$fresh/runtime.ts";
+import { Head } from "$fresh/runtime.ts"
 
 export type HeadProps = {
-  url: URL;
-  title: string;
-  description: string;
-  image?: string;
-};
+  url: URL
+  title: string
+  description: string
+  image?: string
+}
 
 export function HeadElement({ description, image, title, url }: HeadProps) {
   return (
@@ -29,5 +29,5 @@ export function HeadElement({ description, image, title, url }: HeadProps) {
       <meta name="twitter:description" content={description} />
       {image && <meta name="twitter:image" content={image} />}
     </Head>
-  );
+  )
 }

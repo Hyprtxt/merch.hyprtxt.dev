@@ -1,10 +1,10 @@
-import { useState } from "preact/hooks";
-import { tw } from "twind";
-import { css } from "twind/css";
-import { aspectRatio } from "@twind/aspect-ratio";
-import AddToCart from "@/islands/AddToCart.tsx";
-import { formatCurrency } from "@/utils/data.ts";
-import { Product } from "@/utils/types.ts";
+import { useState } from "preact/hooks"
+import { tw } from "twind"
+import { css } from "twind/css"
+import { aspectRatio } from "@twind/aspect-ratio"
+import AddToCart from "@/islands/AddToCart.tsx"
+import { formatCurrency } from "@/utils/data.ts"
+import { Product } from "@/utils/types.ts"
 
 const descriptionStyles = css({
   "a": {
@@ -13,39 +13,39 @@ const descriptionStyles = css({
   "a:hover": {
     textDecoration: "underline",
   },
-});
+})
 
 export default function ProductDetails({ product }: { product: Product }) {
-  const [variant, setVariant] = useState(product.variants.nodes[0]);
-  let index = 0;
+  const [variant, setVariant] = useState(product.variants.nodes[0])
+  let index = 0
 
   function changeImage(delta: number) {
-    if (!product.images) return;
+    if (!product.images) return
 
-    index += delta;
+    index += delta
     if (index < 0) {
-      index = product.images.nodes.length - 1;
+      index = product.images.nodes.length - 1
     } else if (index >= product.images.nodes.length) {
-      index = 0;
+      index = 0
     }
 
-    const newImage = product.images.nodes[index];
+    const newImage = product.images.nodes[index]
     const imageElement = document.querySelector(
       "#productImage",
-    ) as HTMLImageElement;
+    ) as HTMLImageElement
 
-    imageElement.src = newImage.url;
+    imageElement.src = newImage.url
 
     if (newImage.altText) {
-      imageElement.alt = newImage.altText;
+      imageElement.alt = newImage.altText
     }
 
     if (newImage.width) {
-      imageElement.width = newImage.width;
+      imageElement.width = newImage.width
     }
 
     if (newImage.height) {
-      imageElement.height = newImage.height;
+      imageElement.height = newImage.height
     }
   }
 
@@ -118,7 +118,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                 class="absolute w-16 opacity-50 hover:opacity-100 top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
                 type="button"
                 onClick={() => {
-                  changeImage(-1);
+                  changeImage(-1)
                 }}
               >
                 <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -145,7 +145,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                 class="absolute w-16 opacity-50 hover:opacity-100 top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
                 type="button"
                 onClick={() => {
-                  changeImage(1);
+                  changeImage(1)
                 }}
               >
                 <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -216,7 +216,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                       <option value={JSON.stringify(variant)}>
                         {variant.title}
                       </option>
-                    );
+                    )
                   })}
                 </select>
               </div>
@@ -230,5 +230,5 @@ export default function ProductDetails({ product }: { product: Product }) {
         </section>
       </div>
     </div>
-  );
+  )
 }

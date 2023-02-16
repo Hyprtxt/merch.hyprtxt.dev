@@ -1,10 +1,10 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
-import { Footer } from "@/components/Footer.tsx";
-import { HeadElement } from "@/components/HeadElement.tsx";
-import { Header } from "@/components/Header.tsx";
-import ProductDetails from "@/islands/ProductDetails.tsx";
-import { graphql } from "@/utils/shopify.ts";
-import { Product } from "@/utils/types.ts";
+import { Handlers, PageProps } from "$fresh/server.ts"
+import { Footer } from "@/components/Footer.tsx"
+import { HeadElement } from "@/components/HeadElement.tsx"
+import { Header } from "@/components/Header.tsx"
+import ProductDetails from "@/islands/ProductDetails.tsx"
+import { graphql } from "@/utils/shopify.ts"
+import { Product } from "@/utils/types.ts"
 
 const q = `query ($product: String!) {
   product(handle: $product) {
@@ -41,27 +41,27 @@ const q = `query ($product: String!) {
       }
     }
   }
-}`;
+}`
 
 interface Query {
-  product: Product | null;
+  product: Product | null
 }
 
 export const handler: Handlers<Query> = {
   async GET(_req, ctx) {
-    const data = await graphql<Query>(q, { product: ctx.params.product });
+    const data = await graphql<Query>(q, { product: ctx.params.product })
     if (!data.product) {
-      return new Response("Product not found", { status: 404 });
+      return new Response("Product not found", { status: 404 })
     }
-    return ctx.render(data);
+    return ctx.render(data)
   },
-};
+}
 
 export default function ProductPage(ctx: PageProps<Query>) {
-  const { data, url } = ctx;
+  const { data, url } = ctx
 
   if (!data.product) {
-    return <div>Product not found</div>;
+    return <div>Product not found</div>
   }
 
   return (
@@ -74,9 +74,7 @@ export default function ProductPage(ctx: PageProps<Query>) {
       />
 
       <Header />
-      <div
-        class="w-11/12 mt-16 max-w-5xl mx-auto flex items-center justify-between relative"
-      >
+      <div class="w-11/12 mt-16 max-w-5xl mx-auto flex items-center justify-between relative">
         <a
           href="/"
           class="flex items-center gap-2 text-gray-400 hover:text-gray-800 transition-colors duration-200"
@@ -99,5 +97,5 @@ export default function ProductPage(ctx: PageProps<Query>) {
       <ProductDetails product={data.product!} />
       <Footer />
     </>
-  );
+  )
 }

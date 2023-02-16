@@ -3,4 +3,4 @@ module.exports = {
     name: "merch.hyprtxt.dev",
     script: "deno task run",
   }],
-};
+}
