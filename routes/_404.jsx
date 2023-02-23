@@ -21,7 +21,6 @@ export default function Home(ctx) {
         <h2>
           Error
         </h2>
-
         <p>There was an error, we failed to find something</p>
       </div>
       <Footer />
