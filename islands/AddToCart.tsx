@@ -14,7 +14,9 @@ export default function AddToCart(props: AddToCartProps) {
     setIsAdding(true)
     const cart = document.getElementById("cart")
     addToCart(data!.id, props.id).finally(() => {
-      setTimeout(() => cart.showModal(), 500)
+      if (cart) {
+        setTimeout(() => cart.showModal(), 500)
+      }
       setIsAdding(false)
     })
   }
