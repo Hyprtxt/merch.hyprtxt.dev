@@ -44,7 +44,7 @@ export const freshPuppetTestWrapper = (theTests) =>
   freshTestWrapper(async (t) => {
     const browser = await puppeteer.launch(puppet_config)
     const page = await browser.newPage()
-    await delay(100)
+    await delay(100) // Why?
     await theTests(t, page)
     await browser.close()
   })
